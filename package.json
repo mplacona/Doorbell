@@ -1,0 +1,15 @@
+{
+  "name": "doorbell",
+  "version": "1.0.0",
+  "description": "Android things doorbell",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcos Placona",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "twilio": "^2.11.1"
+  }
+}
