@@ -14,7 +14,7 @@
             "description": "The number used by the aplication" 
     },
     "MY_NUMBER": {
-            "description": "Your telephone number. Twilio Tamagotchi will always communicate with this one"
+            "description": "Your telephone number. Your doorbell will ring this number"
     }
   }
 }
