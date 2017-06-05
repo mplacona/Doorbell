@@ -1,13 +1,15 @@
 const express = require('express');
 const twilio = require('twilio');
 
+const PORT = process.env.PORT || 3000;
+
 let app = express();
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
-app.all('/message', (req, res) => {
+app.all('/greeting', (req, res) => {
     let twiml = new twilio.TwimlResponse();
     twiml.say("There's someone at the door", { voice: "alice" });
     res.type("text/xml");
@@ -16,19 +18,19 @@ app.all('/message', (req, res) => {
 
 app.get('/call', (req, res) => {
     let client = new twilio.RestClient(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-    let messageUrl = `${req.protocol}://${req.get('host')}/message`;
-    console.log(messageUrl)
+    let greetingUrl = `${req.protocol}://${req.get('host')}/greeting`;
+    console.log(greetingUrl)
 
     client.calls.create({
-        url: messageUrl,
+        url: greetingUrl,
         to: process.env.MY_NUMBER,
-        from: process.env.TWILIO_NUMBER
-    }, function(err, call) {
-        console.log(call.sid);
+        from: "+37167859942"
+    },(err, call) => {
+        console.log(err);
         res.send(call.sid);
     });
 });
 
-app.listen(3000, () => {
-    console.log('Doorbell listening on port 3000!');
+app.listen(PORT, () => {
+    console.log(`Doorbell listening on port ${PORT}`);
 });
