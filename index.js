@@ -24,7 +24,7 @@ app.get('/call', (req, res) => {
     client.calls.create({
         url: greetingUrl,
         to: process.env.MY_NUMBER,
-        from: "+37167859942"
+        from: process.env.TWILIO_NUMBER
     },(err, call) => {
         console.log(err);
         res.send(call.sid);
