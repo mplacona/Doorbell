@@ -22,7 +22,6 @@ app.get('/call', (req, res) => {
         process.env.TWILIO_AUTH_TOKEN
     );
     let greetingUrl = `${req.protocol}://${req.get('host')}/greeting`;
-    console.log(greetingUrl);
 
     client.calls.create(
         {
